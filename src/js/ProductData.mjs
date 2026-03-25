@@ -1,24 +1,26 @@
+const baseURL = import.meta.env.VITE_SERVER_URL;
+
 import { getLocalStorage } from "./utils.mjs";
 
 export class ProductData {
-  constructor(category) {
-    this.category = category;
-    this.path = `../json/${this.category}.json`;
+  constructor() {
   }
 
-  async getData() {
-    const res = await fetch(this.path);
+  async getData(category) {
+    const res = await fetch(`${baseURL}products/search/${category}`);
 
     if (!res.ok) {
       throw new Error("Bad Response");
     }
 
     const data = await res.json();
-    return data;
+    return data.Result;
   }
   async findProductById(id) {
-    const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    const response = await fetch(`${baseURL}product/${id}`);
+    const data = await response.json();
+    console.log(data.Result);
+    return data.Result;
   }
 }
 

@@ -9,4 +9,4 @@ const product = new ProductDetails(productId, dataSource);
 
 product.init();
 
-loadHeaderFooter();
+loadHeaderFooter(); 

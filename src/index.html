@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script type="module" src="/js/main.js"></script>
   </head>
 
   <body>
-    <header class="divider" id="main-header">
-    </header>
+    <header class="divider" id="main-header"></header>
     <main class="divider">
       <div class="hero">
         <img
@@ -29,14 +29,40 @@
         </div>
       </div>
 
-      <section class="products">
+      <section class="categories">
+        <h2>Categories</h2>
+        <div class="category-container">
+          <a href="./product_listing/index.html?category=tents">
+            <figure class="category">
+              <img src="./public/images/icons/category-tents.svg" alt="Tents">
+              <figcaption>Tents</figcaption>
+            </figure>
+          </a>
+          <a href="./product_listing/index.html?category=backpacks">
+            <figure class="category">
+              <img src="./public/images/icons/category-backpacks.svg" alt="Backpacks">
+              <figcaption>Backpacks</figcaption>
+            </figure>
+          </a>
+          <a href="./product_listing/index.html?category=sleeping-bags">
+            <figure class="category">
+              <img src="./public/images/icons/category-sleepingbags.svg" alt="Sleeping Bags">
+              <figcaption>Sleeping Bags</figcaption>
+            </figure>
+          </a>
+          <a href="./product_listing/index.html?category=hammocks">
+            <figure class="category">
+              <img src="./public/images/icons/category-hammocks.svg" alt="Hammocks">
+              <figcaption>Hammocks</figcaption>
+            </figure>
+          </a>
+        </div>
+      </section>
+      <!-- <section class="products">
         <h2>Top Products</h2>
         <ul class="product-list" id="product-list"></ul>
-      </section>
+      </section> -->
     </main>
-    <footer id="main-footer">
-    </footer>
-
-    <script type="module" src="/js/main.js"></script>
+    <footer id="main-footer"></footer>
   </body>
 </html>
