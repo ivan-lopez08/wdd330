@@ -42,3 +42,28 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data)
+  }
+}
+
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template; 
+}
+
+export async function loadHeaderFooter(){
+  const header_template = await loadTemplate('../partials/header.html');
+  const footer_template = await loadTemplate('../partials/footer.html');
+
+  const header = document.getElementById('main-header');
+  const footer = document.getElementById('main-footer');
+
+  renderWithTemplate(header_template,header);
+  renderWithTemplate(footer_template, footer);
+}

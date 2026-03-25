@@ -1,23 +1,34 @@
-function convertToJson(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
-  }
-}
+import { getLocalStorage } from "./utils.mjs";
 
-export default class ProductData {
+export class ProductData {
   constructor(category) {
     this.category = category;
     this.path = `../json/${this.category}.json`;
   }
-  getData() {
-    return fetch(this.path)
-      .then(convertToJson)
-      .then((data) => data);
+
+  async getData() {
+    const res = await fetch(this.path);
+
+    if (!res.ok) {
+      throw new Error("Bad Response");
+    }
+
+    const data = await res.json();
+    return data;
   }
   async findProductById(id) {
     const products = await this.getData();
     return products.find((item) => item.Id === id);
+  }
+}
+
+
+export class CartProductsData {
+  constructor() {
+    this.cartItems = getLocalStorage("so-cart") || [];
+  }
+
+  async getData(){
+    return this.cartItems;
   }
 }
