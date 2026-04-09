@@ -34,3 +34,19 @@ export class CartProductsData {
     return this.cartItems;
   }
 }
+
+async function checkout(payload) {
+  const res = await fetch(`${baseURL}checkout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    throw new Error("Checkout failed");
+  }
+
+  return res.json();
+}

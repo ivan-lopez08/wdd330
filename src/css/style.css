@@ -337,6 +337,130 @@ button {
   font-weight: bold;
 }
 
+.checkout-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #222;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.checkout-button:hover {
+  background: #444;
+}
+
+.cart-footer {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cart-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* CHECKOUT PAGE */
+.checkout {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.checkout h2 {
+  margin-bottom: 0.5rem;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.checkout-form fieldset {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.checkout-form legend {
+  font-weight: 700;
+  padding: 0 0.5rem;
+}
+
+.checkout-form label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.checkout-form input:focus {
+  outline: 2px solid #999;
+  border-color: #666;
+}
+
+.checkout-submit {
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #222;
+  color: #fff;
+}
+
+.checkout-submit:hover {
+  background-color: #444;
+}
+
+.order-summary {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.order-summary h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.order-summary p,
+.order-summary h4 {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.order-summary h4 {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ccc;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -350,6 +474,20 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  .checkout {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+
+  .checkout h2 {
+    grid-column: 1 / -1;
+  }
+
+  .order-summary {
+    position: sticky;
+    top: 1rem;
   }
 }
 
