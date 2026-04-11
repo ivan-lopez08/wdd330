@@ -461,6 +461,48 @@ button {
   border-top: 1px solid #ccc;
 }
 
+.success-message {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.success-message h2 {
+  margin-bottom: 1rem;
+}
+
+.success-message p {
+  margin-bottom: 0.75rem;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #ffe5e5;
+  border: 1px solid #d33;
+  color: #900;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert-close {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0 0.5rem;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

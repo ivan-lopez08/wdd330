@@ -67,3 +67,32 @@ export async function loadHeaderFooter(){
   renderWithTemplate(header_template,header);
   renderWithTemplate(footer_template, footer);
 }
+
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector("main");
+
+  const existingAlert = main.querySelector(".alert");
+  if (existingAlert) {
+    existingAlert.remove();
+  }
+
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+
+  alert.innerHTML = `
+    <p>${message}</p>
+    <span class="alert-close">X</span>
+  `;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.classList.contains("alert-close")) {
+      main.removeChild(alert);
+    }
+  });
+
+  main.prepend(alert);
+
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}

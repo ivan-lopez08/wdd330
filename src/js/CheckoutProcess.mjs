@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 
 function formDataToJSON(formElement) {
   const formData = new FormData(formElement);
@@ -38,8 +38,7 @@ export default class CheckoutProcess {
       return sum + item.FinalPrice * (item.quantity || 1);
     }, 0);
 
-    document.getElementById("subtotal").textContent =
-      this.itemTotal.toFixed(2);
+    document.getElementById("subtotal").textContent = this.itemTotal.toFixed(2);
   }
 
   calculateOrderTotal() {
@@ -60,27 +59,50 @@ export default class CheckoutProcess {
 
   displayOrderTotals() {
     document.getElementById("tax").textContent = this.tax.toFixed(2);
-    document.getElementById("shipping").textContent =
-      this.shipping.toFixed(2);
+    document.getElementById("shipping").textContent = this.shipping.toFixed(2);
     document.getElementById("orderTotal").textContent =
       this.orderTotal.toFixed(2);
   }
 
-  async checkout(form, services) {
-    const data = formDataToJSON(form);
+    async checkout(form, services) {
+    try {
+      const data = formDataToJSON(form);
 
-    const order = {
-      ...data,
-      orderDate: new Date().toISOString(),
-      items: packageItems(this.list),
-      orderTotal: this.orderTotal.toFixed(2),
-      shipping: this.shipping,
-      tax: this.tax.toFixed(2),
-    };
+      const order = {
+        ...data,
+        orderDate: new Date().toISOString(),
+        items: packageItems(this.list),
+        orderTotal: this.orderTotal.toFixed(2),
+        shipping: this.shipping,
+        tax: this.tax.toFixed(2),
+      };
 
-    console.log("ORDER SENT:", order);
+      const result = await services.checkout(order);
+      console.log("SERVER RESPONSE:", result);
 
-    const result = await services.checkout(order);
-    console.log("SERVER RESPONSE:", result);
+      setLocalStorage(this.key, []);
+      window.location.assign("/checkout/success.html");
+
+      return result;
+    } catch (err) {
+      console.log("CHECKOUT ERROR:", err);
+      console.log("ERROR MESSAGE:", err.message);
+
+      let errorMessage = "There was a problem processing your order.";
+
+      if (err.message) {
+        if (typeof err.message === "string") {
+          errorMessage = err.message;
+        } else if (Array.isArray(err.message)) {
+          errorMessage = err.message.join(", ");
+        } else if (err.message.message) {
+          errorMessage = err.message.message;
+        } else {
+          errorMessage = JSON.stringify(err.message);
+        }
+      }
+
+      alertMessage(errorMessage);
+    }
   }
 }
