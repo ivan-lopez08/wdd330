@@ -1,11 +1,11 @@
 import { loadHeaderFooter } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
-import { ProductData } from "./ProductData.mjs";
+import { ExternalServices } from "./ExternalServices.mjs";
 
 loadHeaderFooter();
 
 const checkout = new CheckoutProcess("so-cart");
-const services = new ProductData();
+const services = new ExternalServices();
 
 checkout.init();
 

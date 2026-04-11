@@ -1,5 +1,5 @@
 import { loadHeaderFooter } from "./utils.mjs";
-import { CartProductsData } from "./ProductData.mjs";
+import { CartProductsData } from "./ExternalServices.mjs";
 import CartList from "./ShoppingCart.mjs";
 
 const dataSource = new CartProductsData();

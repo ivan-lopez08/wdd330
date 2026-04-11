@@ -2,7 +2,7 @@ const baseURL = import.meta.env.VITE_SERVER_URL;
 
 import { getLocalStorage } from "./utils.mjs";
 
-export class ProductData {
+export class ExternalServices {
   constructor() {
   }
 
@@ -21,6 +21,22 @@ export class ProductData {
     const data = await response.json();
     console.log(data.Result);
     return data.Result;
+  }
+
+  async checkout(payload) {
+    const res = await fetch(`${baseURL}checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      throw new Error("Checkout failed");
+    }
+
+    return res.json();
   }
 }
 
